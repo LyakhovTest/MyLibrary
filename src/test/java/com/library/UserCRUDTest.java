@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.annotation.Rollback;
 
-@Rollback(value = false)
+@Rollback(value = true)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UserCRUDTest {
@@ -66,7 +66,6 @@ public class UserCRUDTest {
     }
 
     @Test
-    @Rollback(value = true)
     public void testUpdate() throws ObjectNotFoundException {
         Integer userId = 1;
         Integer bookId = 1;
@@ -86,7 +85,6 @@ public class UserCRUDTest {
     }
 
     @Test
-    @Rollback(value = true)
     public void testDeleteUser() throws ObjectNotFoundException {
         Integer userId = 1;
         userService.delete(userId);

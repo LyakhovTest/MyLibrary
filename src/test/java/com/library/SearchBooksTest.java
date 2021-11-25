@@ -35,35 +35,35 @@ public class SearchBooksTest {
     private BookService bookService;
 
     @Test
-    public void testFindBookByTitlePart() throws ObjectNotFoundException {
+    public void testSearchBooksByTitlePart() throws ObjectNotFoundException {
         List<Book> books = bookService.getByTitlePart("Th");
         Assertions.assertThat(books.size()).isGreaterThan(0);
         System.out.println(books);
     }
 
     @Test
-    public void testFindBookByDescriptionPart() throws ObjectNotFoundException {
-        List<Book> books = bookService.getByDescriptionPart("Th");
+    public void testSearchBooksByDescriptionPart() throws ObjectNotFoundException {
+        List<Book> books = bookService.getByDescriptionPart("eke");
         Assertions.assertThat(books.size()).isGreaterThan(0);
         System.out.println(books);
     }
 
     @Test
-    public void testFindBooksBeforeSomeYear() throws ObjectNotFoundException {
+    public void testSearchBooksBeforeSomeYear() throws ObjectNotFoundException {
         List<Book> books = bookService.getByPublishDateBefore(2010);
         Assertions.assertThat(books.size()).isGreaterThan(0);
         System.out.println(books);
     }
 
     @Test
-    public void testFindBooksAfterSomeYear() throws ObjectNotFoundException {
-        List<Book> books = bookService.getByPublishDateAfter(2010);
+    public void testSearchBooksAfterSomeYear() throws ObjectNotFoundException {
+        List<Book> books = bookService.getByPublishDateAfter(2015);
         Assertions.assertThat(books.size()).isGreaterThan(0);
         System.out.println(books);
     }
 
     @Test
-    public void testFindBooksYearsPeriod() throws ObjectNotFoundException {
+    public void testSearchBooksYearsPeriod() throws ObjectNotFoundException {
         List<Book> books = bookService.getBooksByYearPeriod(2010, 2018);
         Assertions.assertThat(books.size()).isGreaterThan(0);
         System.out.println(books);

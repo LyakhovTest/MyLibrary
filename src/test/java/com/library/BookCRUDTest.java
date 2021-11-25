@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.annotation.Rollback;
 
 @DataJpaTest
-@Rollback(value = false)
+@Rollback(value = true)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class BookCRUDTest {
     @TestConfiguration
@@ -39,7 +39,7 @@ public class BookCRUDTest {
     public void testAddNewBook() throws ObjectNotFoundException {
         Book book = new Book();
         book.setTitle("Thi");
-        book.setDescription("brus ekel");
+        book.setDescription("Bruster ekelele");
         book.setPublishDate(2017);
         bookService.save(book);
 
@@ -67,7 +67,6 @@ public class BookCRUDTest {
     }
 
     @Test
-    @Rollback(value = true)
     public void testUpdateBook() throws ObjectNotFoundException {
         Integer bookId = 1;
         Book book = bookService.get(bookId);
@@ -76,7 +75,7 @@ public class BookCRUDTest {
         book.setTitle("TestUpdateTitle");
         book.setPublishDate(2005);
 
-        Integer userId = 7;
+        Integer userId = 1;
         User user = userService.get(userId);
         book.setUser(user);
 
@@ -88,7 +87,6 @@ public class BookCRUDTest {
     }
 
     @Test
-    @Rollback(value = true)
     public void testDeleteBook() throws ObjectNotFoundException {
         Integer bookId = 1;
         bookService.delete(bookId);
