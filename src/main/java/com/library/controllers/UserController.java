@@ -11,48 +11,48 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
-@Controller
-public class UserController {
-    @Autowired
-    private UserService service;
+//@Controller
+//public class UserController {
+//    @Autowired
+//    private UserService service;
 
-    @GetMapping("/users")
-    public String showUserList(Model model){
-        List<User> listUser = service.listAll();
-        model.addAttribute("listUsers", listUser);
-        return "user/users";
-    }
-
-    @GetMapping("users/new")
-    public String showNewForm(Model model){
-        model.addAttribute("user", new User());
-        model.addAttribute("pageTitle", "Add New User");
-        return "user/user_form";
-    }
-
-    @PostMapping("/users/save")
-    public String saveUser(User user){
-        service.save(user);
-
-        return "redirect:/users";
-    }
-
-    @GetMapping("/users/edit/{id}")
-    public String showEditForm(@PathVariable("id") Integer id, Model model){
-        try {
-            User user = service.get(id);
-            model.addAttribute("user", user);
-            model.addAttribute("pageTitle", "Edit User (ID: "+id+")");
-            return "user/user_form";
-        } catch (UserNotFoundException e) {
-            e.printStackTrace();
-            return "redirect:user/users";
-        }
-    }
-
-    @GetMapping("/users/delete/{id}")
-    public String deleteUser(@PathVariable("id")Integer id){
-        service.delete(id);
-        return "redirect:/users";
-    }
-}
+//    @GetMapping("/users")
+//    public String showUserList(Model model){
+//        List<User> listUser = service.listAll();
+//        model.addAttribute("listUsers", listUser);
+//        return "user/users";
+//    }
+//
+//    @GetMapping("users/new")
+//    public String showNewForm(Model model){
+//        model.addAttribute("user", new User());
+//        model.addAttribute("pageTitle", "Add New User");
+//        return "user/user_form";
+//    }
+//
+//    @PostMapping("/users/save")
+//    public String saveUser(User user){
+//        service.save(user);
+//
+//        return "redirect:/users";
+//    }
+//
+//    @GetMapping("/users/edit/{id}")
+//    public String showEditForm(@PathVariable("id") Integer id, Model model){
+//        try {
+//            User user = service.get(id);
+//            model.addAttribute("user", user);
+//            model.addAttribute("pageTitle", "Edit User (ID: "+id+")");
+//            return "user/user_form";
+//        } catch (UserNotFoundException e) {
+//            e.printStackTrace();
+//            return "redirect:user/users";
+//        }
+//    }
+//
+//    @GetMapping("/users/delete/{id}")
+//    public String deleteUser(@PathVariable("id")Integer id){
+//        service.delete(id);
+//        return "redirect:/users";
+//    }
+//}

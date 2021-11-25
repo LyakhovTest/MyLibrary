@@ -1,7 +1,9 @@
 package com.library.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,24 +15,25 @@ public class User {
     private Integer id;
     @Column(nullable = false, unique = true, length = 45)
     private String email;
-    @Column(length = 15, nullable = false, name = "first_name")
+    @Column(length = 15, nullable = false)
     private String firstName;
-    @Column(length = 15, nullable = false, name="last_name")
+    @Column(length = 15, nullable = false)
     private String lastName;
-    @Column(length = 15, nullable = false, name = "patronymic")
+    @Column(length = 15, nullable = false)
     private String patronymic;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="user_id")
-    private Set<Book> books = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    private List<Book> books = new ArrayList<>();
 
-
-    public void addBook(Book book){
-        books.add(book);
-    }
-
-    public void deleteBook(Book book){
-        books.remove(book);
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", books=" + books +
+                '}';
     }
 
     public Integer getId() {
@@ -49,14 +52,6 @@ public class User {
         this.email = email;
     }
 
-    public String getPatronymic() {
-        return patronymic;
-    }
-
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -73,14 +68,19 @@ public class User {
         this.lastName = lastName;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", patronymic='" + patronymic + '\'' +
-                '}';
+    public String getPatronymic() {
+        return patronymic;
+    }
+
+    public void setPatronymic(String patronymic) {
+        this.patronymic = patronymic;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

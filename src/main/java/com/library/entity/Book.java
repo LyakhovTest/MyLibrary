@@ -11,31 +11,21 @@ public class Book {
     private Integer id;
     @Column(nullable = false, unique = true, length = 45)
     private String title;
-    @Column(nullable = false, length = 150)
+    @Column(columnDefinition = "text")
     private String description;
     @Column(nullable = false, length = 4)
     private Integer publishDate;
-    @Column
-    private Integer userId;
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
     @Override
     public String toString() {
         return "Book{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", publishDate=" + publishDate +
+                ", user=" + user.getId() +
                 '}';
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public Integer getId() {
@@ -68,5 +58,13 @@ public class Book {
 
     public void setPublishDate(Integer publishDate) {
         this.publishDate = publishDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
