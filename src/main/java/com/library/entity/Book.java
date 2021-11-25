@@ -1,7 +1,5 @@
 package com.library.entity;
-
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name="books")
@@ -20,20 +18,24 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", publishDate=" + publishDate +
-                ", user=" + user.getId() +
-                '}';
+        if(user!=null){
+            return "Book{" +
+                    "title='" + title + '\'' +
+                    ", description='" + description + '\'' +
+                    ", publishDate=" + publishDate +
+                    ", user=" + user.getFirstName()+" "+user.getLastName()+" with id: "+user.getId() +
+                    '}';
+        }else{
+            return "Book{" +
+                    "title='" + title + '\'' +
+                    ", description='" + description + '\'' +
+                    ", publishDate=" + publishDate +
+                     '}';
+        }
     }
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getTitle() {

@@ -10,10 +10,15 @@ import java.util.Optional;
 
 @Repository
 public interface BookRepository extends CrudRepository<Book, Integer> {
-    List<Book> findAllByUser(User user);
+    Optional<Book> findBookByTitleEquals(String title);
 
-    Optional<Book> findBookByDescriptionContains(String description);
+    List<Book> findBooksByTitleContains(String title);
 
-    Optional<Book> findBookByTitleContains(String title);
+    List<Book> findBooksByDescriptionContains(String description);
 
+    List<Book> findBooksByPublishDateBefore(Integer maxYear);
+
+    List<Book> findBooksByPublishDateAfter(Integer minYear);
+
+    List<Book> findBooksByPublishDateBetween(Integer minYear,Integer maxYear);
 }
